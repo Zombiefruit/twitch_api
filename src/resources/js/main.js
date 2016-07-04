@@ -20,31 +20,44 @@ function coalesceData(data) {
 
   for (var i = 0; i < data.streams.length; i++) {
     dataArray.push({
-      name : data.streams[i].channel.display_name,
-      game : data.streams[i].channel.game,
-      logo : data.streams[i].channel.logo,
-      status : data.streams[i].channel.status,
-      url : data.streams[i].channel.url,
-      views : data.streams[i].channel.views,
+      name :    data.streams[i].channel.display_name,
+      game :    data.streams[i].channel.game,
+      logo :    data.streams[i].channel.logo,
+      status :  data.streams[i].channel.status,
+      url :     data.streams[i].channel.url,
+      views :   data.streams[i].channel.views,
     });
   }
 
   console.log(dataArray);
-  displayData(dataArray);
+  // displayData(dataArray);
+  populateGrid(dataArray);
 };
 
-function displayData(dataArray) {
-  var list = document.createElement("ul");
+function populateGrid(dataArray) {
+  var table = document.createElement("table");
+  table.id = "data-table";
+  var row = document.createElement("tr");
 
-  for (var i = 0; i < dataArray.length; i++) {
-    var listItem = document.createElement("li");
-    var text = document.createTextNode(dataArray[i].name);
-    listItem.appendChild(text);
-    list.appendChild(listItem);
+  for (var i = 1; i <= dataArray.length; i++) {
+    var tableItem = document.createElement("td");
+    var linkContainer = document.createElement("a");
+    var itemImage = document.createElement("img");
+    linkContainer.href = dataArray[i-1].url;
+    linkContainer.target = "_blank";
+    itemImage.src = dataArray[i-1].logo;
+    linkContainer.appendChild(itemImage);
+    tableItem.appendChild(linkContainer);
+    row.appendChild(tableItem);
+
+    if (i % Math.round(Math.sqrt(dataArray.length + 1)) === 0) {
+      console.log(i);
+      table.appendChild(row);
+      row = document.createElement("tr");
+    }
   }
-
-  document.getElementById('inject').appendChild(list);
-
+  table.appendChild(row);
+  document.getElementById('inject').appendChild(table);
 };
 
 function grabData() {

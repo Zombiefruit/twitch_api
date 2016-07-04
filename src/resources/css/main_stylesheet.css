@@ -1,4 +1,37 @@
 body {
   margin: 0 auto;
   text-align: center;
+  background-color: brown;
+  align-items: center;
+}
+
+table {
+  align-items: center;
+  margin: 0 auto;
+}
+
+td {
+  padding: 20px;
+}
+
+tr {
+  margin: 20px;
+}
+
+td img:hover {
+  border-color: red;
+}
+
+img {
+  width: 200px;
+  height: 200px;
+  border-radius: 150px;
+  border: solid lightblue;
+  float: left;
+  position: inline-block;
+  vertical-align: middle;
+}
+
+span {
+  float: right;
 }
