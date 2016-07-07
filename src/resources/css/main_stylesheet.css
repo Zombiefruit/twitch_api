@@ -1,3 +1,7 @@
+.green-border {
+  border: solid green;
+}
+
 body {
   margin: 0 auto;
   text-align: center;
@@ -10,16 +14,20 @@ table {
   margin: 0 auto;
 }
 
-td {
-  padding: 20px;
-}
-
 tr {
   margin: 20px;
 }
 
-td img:hover {
+td {
+  padding: 20px;
+}
+
+/*td img:hover {
   border-color: red;
+}*/
+
+p {
+  background-color: black;
 }
 
 img {
