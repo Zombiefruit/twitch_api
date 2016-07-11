@@ -14,18 +14,6 @@ document.getElementById("online").onclick = function() {};
 
 document.getElementById("offline").onclick = function() {};
 
-function linkHover(e) {
-  if (e.target.tagName == "IMG") {
-    e.target.className = "green-border";
-  }
-}
-
-function linkBlur(e) {
-  if (e.target.tagName == "IMG") {
-    e.target.className = "";
-  }
-}
-
 function coalesceData(data) {
     var dataArray = [];
 
@@ -40,32 +28,37 @@ function coalesceData(data) {
         });
     }
 
-    // console.log(dataArray);
-    // displayData(dataArray);
     populateGrid(dataArray);
 }
 
 function populateGrid(dataArray) {
     var table = document.createElement("table");
-    table.onmouseover = function(e) {
-      linkHover(e);
-    };
-    table.onmouseout = function(e) {
-      linkBlur(e);
-    };
+    // table.onmouseover = function(e) {
+    //   linkHover(e);
+    // };
+    // table.onmouseout = function(e) {
+    //   linkBlur(e);
+    // };
     table.id = "data-table";
     var row = document.createElement("tr");
 
     for (var i = 1; i <= dataArray.length; i++) {
         var tableItem = document.createElement("td");
+        var containingSpan = document.createElement("span");
+        var textSpan = document.createElement("span");
         var linkContainer = document.createElement("a");
         var itemImage = document.createElement("img");
 
-        linkContainer.href = dataArray[i - 1].url;
+        linkContainer.href = dataArray[i-1].url;
         linkContainer.target = "_blank";
-        itemImage.src = dataArray[i - 1].logo;
+        itemImage.src = dataArray[i-1].logo;
+        containingSpan.className = "containing-span";
+        containingSpan.innerHTML = "";
+        textSpan.innerHTML = dataArray[i-1].name + " " + dataArray[i-1].status;
 
+        containingSpan.appendChild(textSpan);
         linkContainer.appendChild(itemImage);
+        linkContainer.appendChild(containingSpan);
         tableItem.appendChild(linkContainer);
         row.appendChild(tableItem);
 
@@ -95,3 +88,15 @@ function grabData() {
     xmlObject.open("GET", url, true);
     xmlObject.send();
 }
+
+// function linkHover(e) {
+//   if (e.target.tagName == "IMG") {
+//     e.target.className = "green-border";
+//   }
+// }
+//
+// function linkBlur(e) {
+//   if (e.target.tagName == "IMG") {
+//     e.target.className = "";
+//   }
+// }
