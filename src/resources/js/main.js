@@ -15,13 +15,15 @@ document.getElementById("online").onclick = function() {};
 document.getElementById("offline").onclick = function() {};
 
 function linkHover(e) {
-    console.log(e.target);
+  if (e.target.tagName == "IMG") {
     e.target.className = "green-border";
-    // e.className = "green-border";
+  }
 }
 
 function linkBlur(e) {
-  e.target.className = "";
+  if (e.target.tagName == "IMG") {
+    e.target.className = "";
+  }
 }
 
 function coalesceData(data) {
@@ -45,6 +47,12 @@ function coalesceData(data) {
 
 function populateGrid(dataArray) {
     var table = document.createElement("table");
+    table.onmouseover = function(e) {
+      linkHover(e);
+    };
+    table.onmouseout = function(e) {
+      linkBlur(e);
+    };
     table.id = "data-table";
     var row = document.createElement("tr");
 
@@ -55,12 +63,6 @@ function populateGrid(dataArray) {
 
         linkContainer.href = dataArray[i - 1].url;
         linkContainer.target = "_blank";
-        itemImage.onmouseover = function(e) {
-            linkHover(e);
-        };
-        itemImage.onmouseout = function(e) {
-          linkBlur(e);
-        };
         itemImage.src = dataArray[i - 1].logo;
 
         linkContainer.appendChild(itemImage);
