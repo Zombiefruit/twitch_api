@@ -39,6 +39,7 @@ function populateGrid(dataArray) {
     // table.onmouseout = function(e) {
     //   linkBlur(e);
     // };
+    //testing 
     table.id = "data-table";
     var row = document.createElement("tr");
 
