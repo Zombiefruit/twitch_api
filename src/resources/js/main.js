@@ -15,9 +15,13 @@ document.getElementById("online").onclick = function() {};
 document.getElementById("offline").onclick = function() {};
 
 function linkHover(e) {
-    console.log(e);
-    console.log("Here");
-    e.className = "green-border";
+    console.log(e.target);
+    e.target.className = "green-border";
+    // e.className = "green-border";
+}
+
+function linkBlur(e) {
+  e.target.className = "";
 }
 
 function coalesceData(data) {
@@ -53,6 +57,9 @@ function populateGrid(dataArray) {
         linkContainer.target = "_blank";
         itemImage.onmouseover = function(e) {
             linkHover(e);
+        };
+        itemImage.onmouseout = function(e) {
+          linkBlur(e);
         };
         itemImage.src = dataArray[i - 1].logo;
 
