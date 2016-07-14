@@ -39,7 +39,6 @@ function populateGrid(dataArray) {
     // table.onmouseout = function(e) {
     //   linkBlur(e);
     // };
-    //testing again - should be fixed
     table.id = "data-table";
     var row = document.createElement("tr");
 
